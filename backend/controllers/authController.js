@@ -163,36 +163,33 @@ exports.changePassword  = catchAsyncError(async (req, res, next) => {
         success:true,
     })
  })
-
-//Update Profile - /api/v1/update
-exports.updateProfile = catchAsyncError(async (req, res, next) => {
+ exports.updateProfile = catchAsyncError(async (req, res, next) => {
     let newUserData = {
         name: req.body.name,
         email: req.body.email
-    }
+    };
 
     let avatar;
-    let BASE_URL = process.env.BACKEND_URL;
-    if(process.env.NODE_ENV === "production"){
-        BASE_URL = `${req.protocol}://${req.get('host')}`
-    }
+    
+    // Determine the base URL dynamically (better than using BACKEND_URL from .env)
+    const BASE_URL = `${req.protocol}://${req.get('host')}`;
 
-    if(req.file){
-        avatar = `${BASE_URL}/uploads/user/${req.file.originalname}`
-        newUserData = {...newUserData,avatar }
+    if (req.file) {
+        avatar = `${BASE_URL}/uploads/user/${req.file.originalname}`;
+        newUserData.avatar = avatar;
     }
 
     const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
         new: true,
         runValidators: true,
-    })
+    });
 
     res.status(200).json({
         success: true,
-        user
-    })
+        user,
+    });
+});
 
-})
 
 //Admin: Get All Users - /api/v1/admin/users
 exports.getAllUsers = catchAsyncError(async (req, res, next) => {
