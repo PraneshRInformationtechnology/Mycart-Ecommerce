@@ -5,6 +5,12 @@ const cookieParser = require('cookie-parser')
 const path = require('path')
 const dotenv = require('dotenv');
 dotenv.config({path:path.join(__dirname,"config/config.env")});
+import cors from 'cors';
+
+app.use(cors({
+  origin: ['http://localhost:3000'],
+  credentials: true, // if using cookies/sessions
+}));
 
 
 app.use(express.json());

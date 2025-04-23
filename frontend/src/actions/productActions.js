@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../axiosInstance';
 import { productsFail, productsSuccess, productsRequest, adminProductsRequest, adminProductsSuccess, adminProductsFail } from '../slices/productsSlice';
 import { productFail, productSuccess, productRequest, createReviewRequest, createReviewSuccess, createReviewFail, newProductRequest, newProductSuccess, newProductFail, deleteProductRequest, deleteProductSuccess, deleteProductFail, updateProductRequest, updateProductSuccess, updateProductFail, reviewsRequest, reviewsSuccess, reviewsFail, deleteReviewRequest, deleteReviewSuccess, deleteReviewFail } from '../slices/productSlice';
 
@@ -34,6 +34,7 @@ export const getProducts = (keyword, price, category, rating, currentPage) => as
 export const getProduct = id => async (dispatch) => {
 
     try {  
+        console.log("Axios baseURL:", axios.defaults.baseURL);
         dispatch(productRequest()) 
         const { data }  =  await axios.get(`/api/v1/product/${id}`);
         dispatch(productSuccess(data))

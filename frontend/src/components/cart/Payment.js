@@ -1,6 +1,7 @@
 import { useElements, useStripe } from "@stripe/react-stripe-js"
 import { CardNumberElement, CardExpiryElement, CardCvcElement } from "@stripe/react-stripe-js";
-import axios from "axios";
+import axios from '../../axiosInstance';
+
 import { useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom'

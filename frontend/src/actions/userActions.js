@@ -40,13 +40,14 @@ import {
     updateUserFail
 
 } from '../slices/userSlice'
-import axios from 'axios';
+import axios from '../axiosInstance';
 
 export const login = (email, password) => async (dispatch) => {
 
         try {
             dispatch(loginRequest())
             const { data }  = await axios.post(`/api/v1/login`,{email,password});
+
             dispatch(loginSuccess(data))
         } catch (error) {
             dispatch(loginFail(error.response.data.message))
