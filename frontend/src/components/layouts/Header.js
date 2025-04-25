@@ -33,20 +33,8 @@ export default function Header() {
       <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
         {isAuthenticated ?
           (
-            <Dropdown className='d-inline' >
-              <Dropdown.Toggle variant='default text-white pr-5' id='dropdown-basic'>
-                <figure className='avatar avatar-nav'>
-                  <Image
-                    width="50px"
-                    src={
-                      user.avatar
-                        ? `${user.avatar}`
-                        : '/images/default_avatar.png'
-                    }
-                  />
-                </figure>
-                <span>{user.name}</span>
-              </Dropdown.Toggle>
+            https://mycart-ecommerce.onrender.com/uploads/user/profilepic.webp
+
               <Dropdown.Menu>
                 {user.role === 'admin' && <Dropdown.Item onClick={() => { navigate('admin/dashboard') }} className='text-dark'>Dashboard</Dropdown.Item>}
                 <Dropdown.Item onClick={() => { navigate('/myprofile') }} className='text-dark'>Profile</Dropdown.Item>
