@@ -40,7 +40,7 @@ export default function Header() {
                     width="50px"
                     src={
                       user.avatar
-                        ? `${process.env.REACT_APP_API_URL}${user.avatar}`
+                        ? `${user.avatar}`
                         : '/images/default_avatar.png'
                     }
                   />
