@@ -172,7 +172,8 @@ exports.changePassword  = catchAsyncError(async (req, res, next) => {
     let avatar;
     
     // Determine the base URL dynamically (better than using BACKEND_URL from .env)
-    const BASE_URL = `${req.protocol}://${req.get('host')}`;
+    const BASE_URL = process.env.BACKEND_URL || `${req.protocol}://${req.get('host')}`;
+
 
     if (req.file) {
         avatar = `${BASE_URL}/uploads/user/${req.file.originalname}`;
