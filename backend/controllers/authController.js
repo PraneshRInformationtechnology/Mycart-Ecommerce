@@ -175,9 +175,11 @@ exports.changePassword  = catchAsyncError(async (req, res, next) => {
     const BASE_URL = `${req.protocol}://${req.get('host')}`;
 
     if (req.file) {
-        avatar = `${BASE_URL}/uploads/user/${req.file.originalname}`;
+        const filename = req.file.originalname;
+        avatar = `https://mycart-ecommerce.onrender.com/uploads/user/${filename}`;
         newUserData.avatar = avatar;
-    }
+      }
+    // If the user is uploading a new avatar, delete the old one from the server      
 
     const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
         new: true,
