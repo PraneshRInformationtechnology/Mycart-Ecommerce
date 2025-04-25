@@ -175,7 +175,7 @@ exports.changePassword  = catchAsyncError(async (req, res, next) => {
     const BASE_URL = `${req.protocol}://${req.get('host')}`;
 
     if (req.file) {
-        avatar = `https://mycart-ecommerce.onrender.com/uploads/user/${req.file.originalname}`;
+        avatar = `${BASE_URL}/uploads/user/${req.file.originalname}`;
         newUserData.avatar = avatar;
     }
 
